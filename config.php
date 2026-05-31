@@ -4,7 +4,7 @@
 //https://github.com/gogetta69/TMDB-To-VOD-Playlist
 
 /// Set to true for debugging. Set to false to run as production.
-$GLOBALS['DEBUG'] = false; // Developer option.
+$GLOBALS['DEBUG'] = getenv('DEBUG'), 'false'; // Developer option.
 
 // This script no longer by default loads the user created playlist. If you would prefer to create your own playlist
 // change the setting $userCreatePlaylist = true;
@@ -13,7 +13,7 @@ $GLOBALS['DEBUG'] = false; // Developer option.
 
 // Replace 'YOUR_API_KEY' with your TMDb API key - https://www.themoviedb.org/
 //Entering your key here may be visible through google drive. Check your sharing settings.
-$apiKey = '';
+$apiKey = getenv('TMDB_API_KEY');
 
 // Replace this with your Real-Debrid Private API token - https://real-debrid.com/apitoken
 // Don't worry about this setting if you aren't planning on using Real Debrid.
@@ -21,14 +21,14 @@ $PRIVATE_TOKEN = '';
 
 // Replace this with your Premiumize Private API token - https://www.premiumize.me/account
 // Don't worry about this setting if you aren't planning on using Premiumize.
-$premiumizeApiKey = '';
+$premiumizeApiKey = getenv('PremiumizeApiKey');
 
 // By default, on a local network the server identifies as "localhost" or "127.0.0.1" which isn't
 // accessible from other devices in your local network. Set this if you're running the script on
 // a local server and want to access it from other devices (firestick, android, etc. If so, specify
 // the server's local IP (e.g., '192.168.x.x') for network access. Leave this blank for default server
 // address or if installing on a public accessibe server.
-$userSetHost = ''; // Example: 192.168.0.100 see the help file or video for more information.
+$userSetHost = getenv('UserHost'); // Example: 192.168.0.100 see the help file or video for more information.
 
 // Note: The $HTTP_PROXY is utilized only during the scraping of direct movie links. This is particularly necessary if you are making a large number of requests to obtain streaming links, such as when running this script as a service. It is recommended to use backconnect proxies from providers like stormproxies.com to avoid being blocked by streaming websites.
 $HTTP_PROXY = "";
@@ -39,11 +39,11 @@ $USE_HTTP_PROXY = false;
 //When set to true your playist is created by running the 'create_playlist.php' and 'create_tv_playlist.php'
 //When set to false the the movie and tv show playlist will be loaded from github. The playlists on github 
 //are around 45k movies and around 12k series.
-$userCreatePlaylist = false; // Set to false if you don't want to create any playlist.
+$userCreatePlaylist = getenv('CreatePlaylist'); // Set to false if you don't want to create any playlist.
 
 // Adds approximately 10,000 full-length adult movies to the VOD Movie playlist
 //under the category 'XXX Adult Movies'. This playlist is refreshed every Sunday.
-$INCLUDE_ADULT_VOD = false; // Set to true to include adult content.
+$INCLUDE_ADULT_VOD = getenv('AdultVod'); // Set to true to include adult content.
 
 // Set how many movies and TV series you want in your playlist. TMDB shows 20 items on each page.
 // For instance, setting $totalPages to 150 could fetch approximately 35,000 movies across various genres and categories.
@@ -82,7 +82,7 @@ $maxResolution = 1080; // numerical value only
 $maxFileSize = 50000; // numerical value in megabytes
 
 // Set the address HeadlessVidX is listening on.
-$HeadlessVidX_Address = "localhost:3202"; // Example: ip:port
+$HeadlessVidX_Address = "getenv('HeadlessVid');"; // Example: ip:port
 
 // HEADLESSVIDX_MAX_THREADS controls the maximum number of concurrent curl requests (threads) 
 // that the script will handle simultaneously. Being headless browser operations, higher 
